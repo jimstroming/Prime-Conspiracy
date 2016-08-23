@@ -21,9 +21,26 @@ just as you reach the gate?
 using namespace std;
 
 
+float incrementramposition(float sheepy, float ramx, float ramy, float ramspeed, float timedelta)
+{
+
+    return 0;
+}
+
+
+float findcollisionpoint(float ramspeed, float timedelta) 
+{
+    return 0;
+
+}
+
+
 int main()
 {
 
+
+
+    cout << "end of routine" << endl;
 }
 
 
