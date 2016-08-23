@@ -74,7 +74,7 @@ int main()
 }
 
 /* The goat must be approximately 1.63 times the speed of the farmer,
-   i.e.  63% faster */
+   i.e. 63% faster */
 
 
 
