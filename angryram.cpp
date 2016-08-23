@@ -27,8 +27,9 @@ void incrementramposition(float farmx, float farmy, float& ramx, float& ramy, fl
     float xdist = -ramx;
     float ydist = farmy-ramy;
     float distance = sqrt(xdist*xdist+ydist*ydist);
-    ramx = xdist*ramspeed*timedelta/distance;
-    ramy = ydist*ramspeed*timedelta/distance;
+    ramx += xdist*ramspeed*timedelta/distance;
+    ramy += ydist*ramspeed*timedelta/distance;
+    cout << "ramx = " << ramx << " ramy = " << ramy << endl;
     return;
 }
 
@@ -40,9 +41,13 @@ float findcollisionpoint(float ramspeed, float timedelta)
     float ramx  = -1;
     float ramy  =  0;
     
-    farmy += timedelta;
-    incrementramposition(farmx,farmy,ramx,ramy,ramspeed,timedelta);
     
+    while (farmy < 1 and ramx < farmx)
+    {
+        farmy += timedelta;
+        cout << "farmy = " << farmy << endl;
+        incrementramposition(farmx,farmy,ramx,ramy,ramspeed,timedelta);
+    }
     
     return ramy;
 
@@ -54,7 +59,7 @@ int main()
 
 
 
-    cout << "ram caught farmer at " << findcollisionpoint(10,.000001) << endl;
+    findcollisionpoint(1,.000001);
 }
 
 
