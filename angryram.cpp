@@ -22,46 +22,58 @@ just as you reach the gate?
 using namespace std;
 
 
-void incrementramposition(float farmx, float farmy, float& ramx, float& ramy, float ramspeed, float timedelta)
+void incrementramposition(float farmx, float farmy, float* ramx, float* ramy, float ramspeed, float timedelta)
 {
-    float xdist = -ramx;
-    float ydist = farmy-ramy;
+    float xdist = -*ramx;
+    float ydist = farmy-*ramy;
     float distance = sqrt(xdist*xdist+ydist*ydist);
-    ramx += xdist*ramspeed*timedelta/distance;
-    ramy += ydist*ramspeed*timedelta/distance;
-    cout << "ramx = " << ramx << " ramy = " << ramy << endl;
+    *ramx = *ramx + xdist*ramspeed*timedelta/distance;
+    *ramy = *ramy + ydist*ramspeed*timedelta/distance;
+    // cout << "ramx = " << *ramx << " ramy = " << *ramy << endl;
     return;
 }
 
 
-float findcollisionpoint(float ramspeed, float timedelta) 
+float findcollisionpoint(float lowramspeed, float timedelta) 
 {
+
     float farmx =  0;
-    float farmy =  0;
+    float farmy =  1;
     float ramx  = -1;
-    float ramy  =  0;
-    
-    
-    while (farmy < 1 and ramx < farmx)
+    float ramy  =  1;
+
+
+    float ramspeed = lowramspeed;
+    while (farmy >= 1.0)
     {
-        farmy += timedelta;
-        cout << "farmy = " << farmy << endl;
-        incrementramposition(farmx,farmy,ramx,ramy,ramspeed,timedelta);
-    }
+        ramspeed += .01;
+        farmx =  0;
+        farmy =  0;
+        ramx  = -1;
+        ramy  =  0;
     
-    return ramy;
+    
+        while (farmy < 1 and ramx < farmx)
+        {
+            farmy += timedelta;
+            // cout << "farmy = " << farmy << endl;
+            incrementramposition(farmx,farmy,&ramx,&ramy,ramspeed,timedelta);
+        }
+        cout << "ramy = " << ramy << endl;
+    }
+    return ramspeed;
 
 }
 
 
 int main()
 {
+    float timedelta = .000001;
 
-
-
-    findcollisionpoint(1,.000001);
+    cout << "ramspeed = " << findcollisionpoint(1,timedelta) << endl;
 }
 
+/* The goat must be approximately 1.63 times faster than the farmer */
 
 
 
