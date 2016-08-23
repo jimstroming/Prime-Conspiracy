@@ -18,19 +18,33 @@ just as you reach the gate?
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 
-float incrementramposition(float sheepy, float ramx, float ramy, float ramspeed, float timedelta)
+void incrementramposition(float farmx, float farmy, float& ramx, float& ramy, float ramspeed, float timedelta)
 {
-
-    return 0;
+    float xdist = -ramx;
+    float ydist = farmy-ramy;
+    float distance = sqrt(xdist*xdist+ydist*ydist);
+    ramx = xdist*ramspeed*timedelta/distance;
+    ramy = ydist*ramspeed*timedelta/distance;
+    return;
 }
 
 
 float findcollisionpoint(float ramspeed, float timedelta) 
 {
-    return 0;
+    float farmx =  0;
+    float farmy =  0;
+    float ramx  = -1;
+    float ramy  =  0;
+    
+    farmy += timedelta;
+    incrementramposition(farmx,farmy,ramx,ramy,ramspeed,timedelta);
+    
+    
+    return ramy;
 
 }
 
@@ -40,7 +54,7 @@ int main()
 
 
 
-    cout << "end of routine" << endl;
+    cout << "ram caught farmer at " << findcollisionpoint(10,.000001) << endl;
 }
 
 
