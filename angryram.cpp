@@ -73,7 +73,8 @@ int main()
     cout << "ramspeed = " << findcollisionpoint(1,timedelta) << endl;
 }
 
-/* The goat must be approximately 1.63 times faster than the farmer */
+/* The goat must be approximately 1.63 times the speed of the farmer,
+   i.e.  63% faster */
 
 
 
