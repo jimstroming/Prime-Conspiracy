@@ -1,99 +1,47 @@
-// Saw the following paragraph in a Wired article on an new find in prime numbers
-// http://www.wired.com/2016/03/mathematicians-discovered-prime-conspiracy/
 
-// "Soundararajan was drawn to study consecutive primes after hearing a lecture 
-// at Stanford by the mathematician Tadashi Tokieda, of the University of Cambridge, 
-// in which he mentioned a counterintuitive property of coin-tossing: If Alice 
-// tosses a coin until she sees a head followed by a tail, and Bob tosses a coin 
-// until he sees two heads in a row, then on average, Alice will require four 
-// tosses while Bob will require six tosses (try this at home!), even though 
-// head-tail and head-head have an equal chance of appearing after two coin tosses."
+From the 9/2/2016 538 riddler 
 
-// It seemed counterintuitive, so I wrote a program to try it out.
-
-#include <ctime>
-#include <cstdlib>
-#include <iostream>
-using namespace std;
+http://fivethirtyeight.com/features/how-many-bananas-does-it-take-to-lead-a-camel-to-market/
 
 
-int main()
-{
 
-    int OUTERLOOPCOUNT = 1000;  // Let's run 1000 simulations.
-
-    int headtailtotal = 0;
-    int headheadtotal = 0;
-    srand(time(0));
-
-    int HEAD = 0;  
-    int TAIL = 1;
-
-    int i = OUTERLOOPCOUNT;
-    while (i > 0)
-    {    
-        int count = 1;
-        bool lasthead = false;
-        bool headtailfound = false;
-        bool headheadfound = false;
-
-        while (not headtailfound or not headheadfound)
-        {
-            
-            int randomval = rand() % 2;  
-            if (lasthead)
-            {
-                if (randomval == HEAD and not headheadfound)
-                {
-                    headheadfound = true;
-                    headheadtotal += count;
-                }
-                if (randomval == TAIL)
-                {
-                    if (not headtailfound)
-                    {
-                        headtailfound = true;
-                        headtailtotal += count;
-                    }
-                    lasthead = false;
-                }
-            }
-            else
-            {
-                if (randomval == HEAD)
-                {
-                    lasthead = true;
-                }
-            }
+You have a camel and 3,000 bananas. (Because of course you do.) You would like to sell 
+your bananas at the bazaar 1,000 miles away. Your loyal camel can carry at most 1,000 
+bananas at a time. However, it has an insatiable appetite and quite the nose for bananas
+ — if you have bananas with you, it will demand one banana per mile traveled. In the 
+ absence of bananas on his back, it will happily walk as far as needed to get more 
+ bananas, loyal beast that it is. What should you do to get the largest number of 
+ bananas to the bazaar? What is that number?
  
-            count++;
-        }         
-
-        i--;
-    }
-
-    cout << "HEADHEAD average = " << float(headheadtotal)/OUTERLOOPCOUNT << endl;
-    cout << "HEADTAIL average = " << float(headtailtotal)/OUTERLOOPCOUNT << endl;
-
-}
-
-
-// I am definitely seeing the HEAD-HEAD average of 6 tosses, the HEAD-TAIL of 4 tosses.
-
-// Why is this? 
-
-// On examination, the reason is fairly subtle.
-// Say I am trying to throw HT.
-// If my first toss is an H, and my second toss is an H,
-// a third toss of T will give me the HT sequence.
-// But if I am trying to throw HH,
-// If my first toss in an H, and my second toss is a T,
-// there is no third toss that can give me HH.
-// The best I can do is get HH on the 4th toss.
-
-// A wrong HH toss interferes with your ability to throw
-// an HH toss more than a wrong HT toss interferes
-// with your ability to throw an HT toss.
-
-
-
+ -----
+ 
+ Let's solve this logically.  
+ 
+ You can't just load up 1000 bananas on a camel and drive him straight to the bazaar;
+ he will be out of bananas when he get tot he bazaar.
+ 
+ So a simple improvement is to have the camel take the bananas to the half way point.
+ In 3 trips, you can have 1500 bananas at the 500 mile point.  Then, in two trips,
+ the camel can bring 750 camels to the bazaar.
+ 
+ But that does not seem optimal.  To find an optimal solution, you need to 
+ minimize the number of miles the camel travels carrying a banana, since
+ 
+ bananas left = 3000 - miles traveled carrying a banana.
+ 
+ In order to minimize the number of miles traveled carrying a banana,
+ you want to keep that camel as fully loaded as possible, so he takes
+ the fewest number of trips.  You want the portion where he has to take
+ three trips to be as short as possible.  Then, you want the portion where
+ he takes two trips to be as short as possible.
+ 
+ So start with 1000 bananas.  Have him travel 334 miles, so he has 666 bananas
+ left, and drop them off at mile 334.  Do the same 3 times and there will be
+ 1998 bananas at mile 334.
+ 
+ Now, have him load half of those banas, 999, and travel another 499 miles
+ to mile 833, where there will be 500 bananas left.  Have him do that twice
+ and you have 1000 bananas at mile 833.
+ 
+ Now, have him load all 1000 bananas and travel 167 miles to the bazaar,
+ where we will have 833 bananas.
