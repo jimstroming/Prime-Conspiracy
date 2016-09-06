@@ -15,7 +15,7 @@ bananas at a time. However, it has an insatiable appetite and quite the nose for
  
  -----
  
- Let's solve this logically.  
+ Let's solve this logically.
  
  You can't just load up 1000 bananas on a camel and drive him straight to the bazaar;
  he will be out of bananas when he get tot he bazaar.
