@@ -1,10 +1,18 @@
 
 From the 9/23/2016 538 riddler
 
-http://fivethirtyeight.com/features/
+http://fivethirtyeight.com/features/how-big-a-table-can-the-carpenter-build/
 
-
-
+You're on a DIY kick and want to build a circular dining table which can be 
+split in half so leaves can be added when entertaining guests. As luck would 
+have it, on your last trip to the lumber yard, you came across the most pristine 
+piece of exotic wood that would be perfect for the circular table top. 
+Trouble is, the piece is rectangular. You are happy to have the leaves fashioned 
+from one of the slightly-less-than-perfect pieces underneath it, but there’s still 
+the issue of the main circle. You devise a plan: cut two congruent semicircles 
+from the perfect 4-by-8-foot piece and reassemble them to form the circular top 
+of your table. What is the radius of the largest possible circular table you 
+can make?
 
  
  -----
