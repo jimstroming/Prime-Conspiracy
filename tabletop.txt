@@ -1,0 +1,43 @@
+
+From the 9/23/2016 538 riddler
+
+http://fivethirtyeight.com/features/
+
+
+
+
+ 
+ -----
+ 
+ Let's solve this geometrically.
+ 
+ We know that the semicircle has to fit in 1/2 of the rectangle.
+ We do not know how the rectangle is split in half.
+ We do know the split has to go through the center of the rectangle,
+ so we can have a symmetric solution.
+ 
+ Let's start with the semicircle, and try to fit it inside a right 
+ triangle with length twice the width.  
+ 
+ What we end up with is the straight side of the semicircle on the 
+ hypotenuse, and the circle is tangent to the two sides of the 
+ triangle. 
+ 
+ From the definition of a tangent line, the two lines from the 
+ center of the hemisphere to the tangent points must be perpendicular
+ to the side, forming a right angle.
+ 
+ If x, y is the coordinate of the center of the circle.
+ 
+ x = r
+ y+r = 4
+ but y = 0.5 x, because the rectangle is twice and long as wide.
+ 
+ so 
+ r = 2y
+ y + 2y = 4
+ y = 4/3
+ r = 2y = 8/3 = 2 2/3 
+ 
+ Hence, the radius is 2 2/3.
+ 
