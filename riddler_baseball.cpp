@@ -23,6 +23,7 @@ Lets start with the way the schedule is done currently.
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <random>
 
 using namespace std;
 
@@ -30,10 +31,10 @@ class Baseball_Division {
     int numberteams;            // number of teams in the division
     int intradivisionperteam;   // number of games each team plays against each team in their division
     int outsidedivision; // number of games each team plays outside the division
-     
+    float get_random();
   public:
     Baseball_Division(int, int, int);
-    vector<int> playseason();
+    vector<int> playseason(float);
     
 };
 
@@ -43,15 +44,44 @@ Baseball_Division::Baseball_Division(int a, int b, int c) {
     outsidedivision = c;
 }
 
-Baseball_Division::playseason(){
-    vector<int> winsperteam = {};  // wins each team wins per season    
+float Baseball_Division::get_random()
+{
+    static std::default_random_engine e;
+    static std::uniform_real_distribution<> dis(0, 1); // rage 0 - 1
+    return dis(e);
+}
+
+vector<int> Baseball_Division::playseason(float winningpercentage){
+    vector<int> winsperteam;  // wins each team wins per season    
+
+    // construct the winsperteam vector and initialize to zero
+    for(int i=0; i < numberteams; i++)
+        winsperteam.push_back(0);    
+        
+    // play the interdivision games
+    for (int teamnumber = 0; teamnumber < numberteams; teamnumber++)
+    {
+        for (int x = 0; x < outsidedivision; x++)
+        {
+            if (get_random() > winningpercentage)
+                winsperteam[teamnumber] += 1;    
+        }
+    }
+    // play the intradivision games    
+        
+        
+    return(winsperteam);
 
 }
 
 
 int main()
 {
-   Baseball_Division mlb(5,19,86);
+   vector<int> winsperteam;  // wins each team wins per season
+   Baseball_Division alw(5,19,86);
+   
+   winsperteam = alw.playseason(0.5);
+
 
    return 0;
 }
