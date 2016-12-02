@@ -68,8 +68,21 @@ vector<int> Baseball_Division::playseason(float winningpercentage){
         }
     }
     // play the intradivision games    
-        
-        
+
+    for (int teamnumber = 0; teamnumber < numberteams-1; teamnumber++)
+    {
+        for (int opponent = teamnumber+1; opponent < numberteams; opponent++)
+        {
+            for (int x = 0; x < intradivisionperteam; x++)
+            {
+                if (get_random() > winningpercentage)
+                    winsperteam[teamnumber] += 1;
+                else
+                    winsperteam[opponent] += 1;
+            }
+        }
+    }    
+    
     return(winsperteam);
 
 }
