@@ -18,8 +18,29 @@ Lets start with the way the schedule is done currently.
 
 /* ========================================================================== */
 
+#include <ctime>
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <vector>
 
-void main()
+using namespace std;
+
+class Baseball_League {
+    int numberteams;            // number of teams in the league
+    int intradivision;   // number of games each team plays inside the division
+    int outsidedivision; // number of games each team plays outside the division
+    vector<int> winsperteam;
+     
+  public:
+      
+
+};
+
+
+int main()
 {
-
+   return 0;
 }
+
+
