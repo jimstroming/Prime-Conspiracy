@@ -26,20 +26,28 @@ Lets start with the way the schedule is done currently.
 
 using namespace std;
 
-class Baseball_League {
-    int numberteams;            // number of teams in the league
-    int intradivision;   // number of games each team plays inside the division
+class Baseball_Division {
+    int numberteams;            // number of teams in the division
+    int intradivisionperteam;   // number of games each team plays against each team in their division
     int outsidedivision; // number of games each team plays outside the division
-    vector<int> winsperteam;
+    vector<int> winsperteam;  // wins each team wins per season
      
   public:
-      
-
+    Baseball_Division(int, int, int);
+    
 };
+
+Baseball_Division::Baseball_Division(int a, int b, int c) {
+    numberteams = a;
+    intradivisionperteam = b;
+    outsidedivision = c;
+}
 
 
 int main()
 {
+   Baseball_Division mlb(5,19,86);
+
    return 0;
 }
 
