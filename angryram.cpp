@@ -13,8 +13,6 @@ just as you reach the gate?
 
 */
 
-
-
 #include <ctime>
 #include <cstdlib>
 #include <iostream>
@@ -22,13 +20,13 @@ just as you reach the gate?
 using namespace std;
 
 
-void incrementramposition(float farmx, float farmy, float* ramx, float* ramy, float ramspeed, float timedelta)
+void incrementramposition(float farmx, float farmy, float& ramx, float& ramy, float ramspeed, float timedelta)
 {
-    float xdist = -*ramx;
-    float ydist = farmy-*ramy;
+    float xdist = -ramx;
+    float ydist = farmy-ramy;
     float distance = sqrt(xdist*xdist+ydist*ydist);
-    *ramx = *ramx + xdist*ramspeed*timedelta/distance;
-    *ramy = *ramy + ydist*ramspeed*timedelta/distance;
+    ramx = ramx + xdist*ramspeed*timedelta/distance;
+    ramy = ramy + ydist*ramspeed*timedelta/distance;
     // cout << "ramx = " << *ramx << " ramy = " << *ramy << endl;
     return;
 }
@@ -57,7 +55,7 @@ float findcollisionpoint(float lowramspeed, float timedelta)
         {
             farmy += timedelta;
             // cout << "farmy = " << farmy << endl;
-            incrementramposition(farmx,farmy,&ramx,&ramy,ramspeed,timedelta);
+            incrementramposition(farmx,farmy,ramx,ramy,ramspeed,timedelta);
         }
         cout << "ramy = " << ramy << endl;
     }
