@@ -1,15 +1,16 @@
-// Saw the following paragraph in a Wired article on an new find in prime numbers
-// http://www.wired.com/2016/03/mathematicians-discovered-prime-conspiracy/
+/* Saw the following paragraph in a Wired article on an new find in prime numbers
+http://www.wired.com/2016/03/mathematicians-discovered-prime-conspiracy/
 
-// "Soundararajan was drawn to study consecutive primes after hearing a lecture 
-// at Stanford by the mathematician Tadashi Tokieda, of the University of Cambridge, 
-// in which he mentioned a counterintuitive property of coin-tossing: If Alice 
-// tosses a coin until she sees a head followed by a tail, and Bob tosses a coin 
-// until he sees two heads in a row, then on average, Alice will require four 
-// tosses while Bob will require six tosses (try this at home!), even though 
-// head-tail and head-head have an equal chance of appearing after two coin tosses."
+"Soundararajan was drawn to study consecutive primes after hearing a lecture 
+at Stanford by the mathematician Tadashi Tokieda, of the University of Cambridge, 
+in which he mentioned a counterintuitive property of coin-tossing: If Alice 
+tosses a coin until she sees a head followed by a tail, and Bob tosses a coin 
+until he sees two heads in a row, then on average, Alice will require four 
+tosses while Bob will require six tosses (try this at home!), even though 
+head-tail and head-head have an equal chance of appearing after two coin tosses."
 
-// It seemed counterintuitive, so I wrote a program to try it out.
+It seemed counterintuitive, so I wrote a program to try it out.
+*/
 
 #include <ctime>
 #include <cstdlib>
@@ -77,23 +78,23 @@ int main()
 
 }
 
+/*
+I am definitely seeing the HEAD-HEAD average of 6 tosses, the HEAD-TAIL of 4 tosses.
 
-// I am definitely seeing the HEAD-HEAD average of 6 tosses, the HEAD-TAIL of 4 tosses.
+Why is this? 
 
-// Why is this? 
+On examination, the reason is fairly subtle.
+Say I am trying to throw HT.
+If my first toss is an H, and my second toss is an H,
+a third toss of T will give me the HT sequence.
+But if I am trying to throw HH,
+If my first toss in an H, and my second toss is a T,
+there is no third toss that can give me HH.
+The best I can do is get HH on the 4th toss.
 
-// On examination, the reason is fairly subtle.
-// Say I am trying to throw HT.
-// If my first toss is an H, and my second toss is an H,
-// a third toss of T will give me the HT sequence.
-// But if I am trying to throw HH,
-// If my first toss in an H, and my second toss is a T,
-// there is no third toss that can give me HH.
-// The best I can do is get HH on the 4th toss.
-
-// A wrong HH toss interferes with your ability to throw
-// an HH toss more than a wrong HT toss interferes
-// with your ability to throw an HT toss.
-
+A wrong HH toss interferes with your ability to throw
+an HH toss more than a wrong HT toss interferes
+with your ability to throw an HT toss.
+*/
 
 
