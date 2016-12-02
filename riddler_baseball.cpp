@@ -30,10 +30,10 @@ class Baseball_Division {
     int numberteams;            // number of teams in the division
     int intradivisionperteam;   // number of games each team plays against each team in their division
     int outsidedivision; // number of games each team plays outside the division
-    vector<int> winsperteam;  // wins each team wins per season
      
   public:
     Baseball_Division(int, int, int);
+    vector<int> playseason();
     
 };
 
@@ -41,6 +41,11 @@ Baseball_Division::Baseball_Division(int a, int b, int c) {
     numberteams = a;
     intradivisionperteam = b;
     outsidedivision = c;
+}
+
+Baseball_Division::playseason(){
+    vector<int> winsperteam = {};  // wins each team wins per season    
+
 }
 
 
