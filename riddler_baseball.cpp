@@ -24,8 +24,8 @@ Lets start with the way the schedule is done currently.
 #include <cmath>
 #include <vector>
 #include <random>
+#include <tuple>
 
-using namespace std;
 
 class Baseball_Division {
     int numberteams;            // number of teams in the division
@@ -34,7 +34,8 @@ class Baseball_Division {
     float get_random();
   public:
     Baseball_Division(int, int, int);
-    vector<int> playseason(float);
+    std::vector<int> playseason(float);
+    std::tuple<float, std::vector<int>> playmultipleseasons(int, float);
     
 };
 
@@ -51,8 +52,8 @@ float Baseball_Division::get_random()
     return dis(e);
 }
 
-vector<int> Baseball_Division::playseason(float winningpercentage){
-    vector<int> winsperteam;  // wins each team wins per season    
+std::vector<int> Baseball_Division::playseason(float winningpercentage){
+    std::vector<int> winsperteam;  // wins each team wins per season    
 
     // construct the winsperteam vector and initialize to zero
     for(int i=0; i < numberteams; i++)
@@ -87,10 +88,36 @@ vector<int> Baseball_Division::playseason(float winningpercentage){
 
 }
 
+std::tuple<float, std::vector<int>>  Baseball_Division::playmultipleseasons(int numberseasons, float winningpercentage){
+    std::vector<int> pennantsperteam;
+    for(int i=0; i < numberteams; i++)
+        pennantsperteam.push_back(0);    
+    
+    int totalgameswonbywinner = 0; 
+        
+    for(int x=0; x < numberseasons; x++)
+    {   
+        std::vector<int> winsperteam = playseason(winningpercentage);
+        /*
+        winningnumbergames = max(winsperteam)   // left off here
+        totalgameswonbywinner += winningnumbergames
+        for x in range(0, numberteams):
+            if winsperteam[x] == winningnumbergames:
+                pennantsperteam[x] += 1  // in the event of a tie, give each team the pennant
+        */        
+    }            
+    float averagenumberofwinsperwinner = float(totalgameswonbywinner)/numberseasons;
+        
+    return std::make_tuple(averagenumberofwinsperwinner, pennantsperteam);
+}
+
+
+
+
 
 int main()
 {
-   vector<int> winsperteam;  // wins each team wins per season
+   std::vector<int> winsperteam;  // wins each team wins per season
    Baseball_Division alw(5,19,86);
    
    winsperteam = alw.playseason(0.5);
