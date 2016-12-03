@@ -118,12 +118,17 @@ void Baseball_Division::playmultipleseasons(int numberseasons, float winningperc
 
 int main()
 {
-   std::vector<int> winsperteam;  // wins each team wins per season
+
+   float averagenumberofwinsperwinner;    
+   int numberofseasons = 1000;
+   std::vector<int> pennantsperteam;  // # pennants each team won
    Baseball_Division alw(5,19,86);
    
-   winsperteam = alw.playseason(0.5);
+   alw.playmultipleseasons(numberofseasons, 0.5, averagenumberofwinsperwinner, pennantsperteam);
 
 
+   std::cout << "Simulated " << numberofseasons << " seasons. The best average pennant winner won " << averagenumberofwinsperwinner << " games." << std::endl;
+   
    return 0;
 }
 
