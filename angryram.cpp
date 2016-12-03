@@ -17,7 +17,6 @@ just as you reach the gate?
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
-using namespace std;
 
 
 void incrementramposition(float farmx, float farmy, float& ramx, float& ramy, float ramspeed, float timedelta)
@@ -27,7 +26,6 @@ void incrementramposition(float farmx, float farmy, float& ramx, float& ramy, fl
     float distance = sqrt(xdist*xdist+ydist*ydist);
     ramx = ramx + xdist*ramspeed*timedelta/distance;
     ramy = ramy + ydist*ramspeed*timedelta/distance;
-    // cout << "ramx = " << *ramx << " ramy = " << *ramy << endl;
     return;
 }
 
@@ -54,10 +52,9 @@ float findcollisionpoint(float lowramspeed, float timedelta)
         while (farmy < 1 and ramx < farmx)
         {
             farmy += timedelta;
-            // cout << "farmy = " << farmy << endl;
             incrementramposition(farmx,farmy,ramx,ramy,ramspeed,timedelta);
         }
-        cout << "ramy = " << ramy << endl;
+        std::cout << "ramy = " << ramy << std::endl;
     }
     return ramspeed;
 
@@ -68,7 +65,7 @@ int main()
 {
     float timedelta = .000001;
 
-    cout << "ramspeed = " << findcollisionpoint(1,timedelta) << endl;
+    std::cout << "ramspeed = " << findcollisionpoint(1,timedelta) << std::endl;
 }
 
 /* The goat must be approximately 1.63 times the speed of the farmer,
