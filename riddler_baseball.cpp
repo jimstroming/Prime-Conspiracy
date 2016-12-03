@@ -36,7 +36,7 @@ class Baseball_Division {
   public:
     Baseball_Division(int, int, int);
     std::vector<int> playseason(float);
-    std::tuple<float, std::vector<int>> playmultipleseasons(int, float);
+    void playmultipleseasons(int, float, float&, std::vector<int>&);
     
 };
 
@@ -89,8 +89,8 @@ std::vector<int> Baseball_Division::playseason(float winningpercentage){
 
 }
 
-std::tuple<float, std::vector<int>>  Baseball_Division::playmultipleseasons(int numberseasons, float winningpercentage){
-    std::vector<int> pennantsperteam;
+void Baseball_Division::playmultipleseasons(int numberseasons, float winningpercentage, float &averagenumberofwinsperwinner, std::vector<int> &pennantsperteam){
+
     for(int i=0; i < numberteams; i++)
         pennantsperteam.push_back(0);    
     
@@ -107,9 +107,9 @@ std::tuple<float, std::vector<int>>  Baseball_Division::playmultipleseasons(int 
                 pennantsperteam[x] += 1;  // in the event of a tie, give each team the pennant   
         }    
     }            
-    float averagenumberofwinsperwinner = float(totalgameswonbywinner)/numberseasons;
+    averagenumberofwinsperwinner = float(totalgameswonbywinner)/numberseasons;
         
-    return std::make_tuple(averagenumberofwinsperwinner, pennantsperteam);
+    // return std::make_tuple(averagenumberofwinsperwinner, pennantsperteam);
 }
 
 
