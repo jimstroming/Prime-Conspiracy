@@ -25,6 +25,7 @@ Lets start with the way the schedule is done currently.
 #include <vector>
 #include <random>
 #include <tuple>
+#include <algorithm>
 
 
 class Baseball_Division {
@@ -98,13 +99,13 @@ std::tuple<float, std::vector<int>>  Baseball_Division::playmultipleseasons(int 
     for(int x=0; x < numberseasons; x++)
     {   
         std::vector<int> winsperteam = playseason(winningpercentage);
-        /*
-        winningnumbergames = max(winsperteam)   // left off here
-        totalgameswonbywinner += winningnumbergames
-        for x in range(0, numberteams):
-            if winsperteam[x] == winningnumbergames:
-                pennantsperteam[x] += 1  // in the event of a tie, give each team the pennant
-        */        
+        int winningnumbergames = *max_element(winsperteam.begin(),winsperteam.end());
+        totalgameswonbywinner += winningnumbergames;
+        for (int x=0; x<numberteams; x++)
+        {
+            if(winsperteam[x] == winningnumbergames)
+                pennantsperteam[x] += 1;  // in the event of a tie, give each team the pennant   
+        }    
     }            
     float averagenumberofwinsperwinner = float(totalgameswonbywinner)/numberseasons;
         
