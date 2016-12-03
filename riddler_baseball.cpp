@@ -48,7 +48,8 @@ Baseball_Division::Baseball_Division(int a, int b, int c) {
 
 float Baseball_Division::get_random()
 {
-    static std::default_random_engine e;
+    static std::random_device rd;
+    static std::default_random_engine e (rd());
     static std::uniform_real_distribution<> dis(0, 1); // rage 0 - 1
     return dis(e);
 }
@@ -132,4 +133,15 @@ int main()
    return 0;
 }
 
+/*
+Simulated 1000 seasons. The best average pennant winner won 88.793 games.
+root@DESKTOP-PBTFIO5:/mnt/c/Users/Jim/Desktop/pythonprojects/github2/Prime-Conspiracy# ./a.out
+Simulated 1000 seasons. The best average pennant winner won 88.942 games.
+root@DESKTOP-PBTFIO5:/mnt/c/Users/Jim/Desktop/pythonprojects/github2/Prime-Conspiracy# ./a.out
+Simulated 1000 seasons. The best average pennant winner won 88.617 games.
+root@DESKTOP-PBTFIO5:/mnt/c/Users/Jim/Desktop/pythonprojects/github2/Prime-Conspiracy# ./a.out
+Simulated 1000 seasons. The best average pennant winner won 88.864 games.
+root@DESKTOP-PBTFIO5:/mnt/c/Users/Jim/Desktop/pythonprojects/github2/Prime-Conspiracy# ./a.out
+Simulated 1000 seasons. The best average pennant winner won 88.959 games. 
 
+So, the best average pennant winner won approximately 88.8 games. */
